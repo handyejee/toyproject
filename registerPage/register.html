@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register page</title>
+    <style>
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function getSubAddress(val) {
+            console.log(val);
+
+                $.ajax({
+                    type : "GET", //HTTP method type
+                    url : "./subAddress.php", // API URL
+                    data : "list=" + val, // API 에 보내는 데이터
+                    success : function(response) { // 통신 결과가 성공일 경우 success
+                        document.getElementById("main-address").innerHTML = decodeURIComponent(response); // API 에서 rawurlencode 했던 거 decode
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown) { // 실패할 경우 alert 띄움
+                        alert("중분류 불러오기 실패");
+                    }
+                });
+            }
+
+          $(function(){
+            getSubAddress(1);
+          });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                이름 :
+            </td>    
+            <td>
+                <input type="text" id="name">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                나이 : 
+            </td>
+            <td>
+                <input type="text" id="age">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                성별 : 
+            </td>
+            <td>
+                남자 <input type="radio" id="gender" name="male">
+                여자 <input type="radio" id="gender" name="female">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                거주지 : 
+            </td>
+            <td>
+                <select name="main-address" id="main-address">
+                    <option value="seoul">선택하세요</option>
+                    <option value="seoul">서울</option>
+                    <option value="seoul">경기도</option>
+                    <option value="seoul">인천광역시</option>
+                    <option value="seoul">제주도</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                가장 좋아하는 과일은?
+            </td>
+            <td>
+                <select name="fruit" id="fruit">
+                    <option value="fruit1">선택하세요</option>
+                    <option value="fruit2">딸기</option>
+                    <option value="fruit3">사과</option>
+                    <option value="fruit4">바나나</option>
+                    <option value="fruit5">파인애플</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                남기실 말 :
+            </td>
+            <td>
+                <textarea></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
