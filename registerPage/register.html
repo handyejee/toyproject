@@ -18,7 +18,7 @@
                     url : "./subAddress.php", // API URL
                     data : "address=" + val, // API 에 보내는 데이터
                     success : function(response) { // 통신 결과가 성공일 경우 success
-                        document.getElementById("main-address").innerHTML = decodeURIComponent(response); // API 에서 rawurlencode 했던 거 decode
+                        document.getElementById("sub-address").innerHTML = decodeURIComponent(response); // API 에서 rawurlencode 했던 거 decode
                     },
                     error : function(XMLHttpRequest, textStatus, errorThrown) { // 실패할 경우 alert 띄움
                         alert("중분류 불러오기 실패");
@@ -63,7 +63,7 @@
                 거주지 : 
             </td>
             <td>
-                <select onChange="getSubAddress(this.value)" name="main-address" id="main-address">
+                <select name="main-address" id="main-address" onChange="getSubAddress(this.value)">
                     <option value="main-address1">선택하세요</option>
                     <option value="main-address2">서울</option>
                     <option value="main-address3">경기도</option>
