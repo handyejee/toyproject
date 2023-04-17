@@ -12,6 +12,8 @@
         <li>HTML</li>
     </ol>
     <form action="process_create.php" method="POST">
-        <p></p>
-</body>
+        <p><input type="text" name="title" placeholder="title"></p>
+        <p><textarea name="description" placeholder="description"></textarea></p>
+        <p><input type="submit"></p>
+    </body>
 </html>
