@@ -1,18 +1,24 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "root", "livDB");
+
+$table = "CREATE TABLE í…Œì´ë¸”ì´ë¦„";
+
+//INSERT : inserts new rows into an existing table.
 $sql = " 
     INSERT INTO topic
         (title, 
         description, 
         created
-        ) VALUES (
+        ) 
+        VALUES (
         'MySQL',
         'MySQL is..',
         NOW()
     )";
 mysqli_query($conn, $sql);
+
 if($result === false){
-    echo mysqli_error($conn); // error °¡ ¾î¶² error ÀÎÁö database¿¡¼­ ¾Ë·ÁÁÜ
+    echo mysqli_error($conn); // error ê°€ ì–´ë–¤ error ì¸ì§€ databaseì—ì„œ ì•Œë ¤ì¤Œ
 }
     
 ?>
