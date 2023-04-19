@@ -1,5 +1,9 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "root", "livDB");
+// echo "<pre>";
+// print_r($conn);
+// echo "</pre>";
+
 $sql = " 
     INSERT INTO topic
         (title, 
@@ -10,9 +14,14 @@ $sql = "
         'MySQL is..',
         NOW()
     )";
+
 mysqli_query($conn, $sql);
+
+
 if($result === false){
-    echo mysqli_error($conn); // error °¡ ¾î¶² error ÀÎÁö database¿¡¼­ ¾Ë·ÁÁÜ
+    echo mysqli_error($conn); // errorê°€ ë‚œ ê²½ìš° dbì—ì„œ ì²˜ëŸ¼ ì—ëŸ¬ë©”ì„¸ì§€ë¥¼ ë³´ì—¬ì¤€ë‹¤.
+} else {
+    echo "query ë“±ë¡ í™•ì¸";
 }
     
 ?>
