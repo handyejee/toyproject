@@ -1,5 +1,5 @@
 <?php
-var_dump($_POST); // post ·Î µ¥ÀÌÅÍ°¡ Àß ³Ñ¾î¿Ô´ÂÁö È®ÀÎ
+var_dump($_POST); // post ë¡œ ë°ì´í„°ê°€ ìž˜ ë„˜ì–´ì™”ëŠ”ì§€ í™•ì¸
 
 $sql = "
     INSERT INTO topic
@@ -14,10 +14,11 @@ $sql = "
 
 $result = mysqli_query($conn, $sql);
 if ($result === false) {
-    echo "ÀúÀåÇÏ´Â °úÁ¤¿¡¼­ ¹®Á¦°¡ »ý°å½À´Ï´Ù. °ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä.";
+    echo "ì €ìž¥í•˜ëŠ” ê³¼ì •ì—ì„œ ë¬¸ì œê°€ ìƒê²¼ìŠµë‹ˆë‹¤. ê´€ë¦¬ìžì—ê²Œ ë¬¸ì˜í•˜ì„¸ìš”.";
     error_log(mysqli_error($conn));
+    
 } else {
-    echo "¼º°øÇß½À´Ï´Ù. <a href='index.php'>µ¹¾Æ°¡±â</a>";
+    echo "ì„±ê³µí–ˆìŠµë‹ˆë‹¤. <a href='index.php'>ëŒì•„ê°€ê¸°</a>";
 }
 
 ?>
