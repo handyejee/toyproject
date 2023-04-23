@@ -1,5 +1,7 @@
 <?php
-var_dump($_POST); // post 로 데이터가 잘 넘어왔는지 확인
+$conn = mysqli_connect('localhost', 'root', 'root', 'livDB');
+
+// var_dump($_POST); // post 로 데이터가 잘 넘어왔는지 확인
 
 $sql = "
     INSERT INTO topic
