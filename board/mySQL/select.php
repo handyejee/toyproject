@@ -1,18 +1,48 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "root", "livDB"); //mysql Á¢¼Ó
+$conn = mysqli_connect("localhost", "root", "root", "livDB"); //mysql ì ‘ì†
 
-$sql = "SELECT * FROM topic WHERE id = 19"; 
-// $sql = "SELECT * FROM topic ÀÌ·¸°Ô¸¸ ÇØ¼­ Á¶È¸ÇÏ¸é ÀüÃ¼°¡ ´Ù Á¶È¸µÇ±â ¶§¹®¿¡ µ¥ÀÌÅÍ°¡ ¸¹À» °æ¿ì¿¡ ºñÃß
-// WHERE id = 19 -> id°ªÀÌ 19 ÀÎ ÇàÀ» °¡Á®¿Â´Ù 
-// DELETE ÇØµµ id °ªÀº ÃÊ±âÈ­ µÇÁö ¾Ê³ª?
+echo "<h1>single row</h1>";
+$sql = "SELECT * FROM topic WHERE id = 6ã„´"; 
+// $sql = "SELECT * FROM topic ì´ë ‡ê²Œë§Œ í•´ì„œ ì¡°íšŒí•˜ë©´ ì „ì²´ê°€ ë‹¤ ì¡°íšŒë˜ê¸° ë•Œë¬¸ì— ë°ì´í„°ê°€ ë§ì„ ê²½ìš°ì— ë¹„ì¶”
+// WHERE id = 19 -> idê°’ì´ 19 ì¸ í–‰ì„ ê°€ì ¸ì˜¨ë‹¤ 
+// DELETE í•´ë„ id ê°’ì€ ì´ˆê¸°í™” ë˜ì§€ ì•Šë‚˜? -> Unique id ì´ê¸° ë•Œë¬¸ì— Delete ì´í›„ì—ë„ IndexëŠ” ëŒì•„ì˜¤ì§€ ì•ŠëŠ”ë‹¤.
 
 $result = mysqli_query($conn, $sql);
 
-// ¼Ó¼º º° È®ÀÎ ¹æ¹ı
-var_dump($result->num_rows); 
+// ì†ì„± ë³„ í™•ì¸ ë°©ë²•
+// var_dump($result->num_rows); 
 
 $row = mysqli_fetch_array($result);
 
-echo '<h1>'.$row['title'].'<h1>';
+echo '<h1>'.$row['title'].'<h1>'; // ì—°ê´€ë°°ì—´
 echo $row['description'];
 
+//multiple row
+echo "<h1>multi row</h1>";
+$sql = "SELECT * FROM topic"; 
+$result = mysqli_query($conn, $sql);
+
+$row = mysqli_fetch_array($result);
+echo '<h2>'.$row['title'].'<h2>'; // ì—°ê´€ë°°ì—´
+echo $row['description'];
+
+$row = mysqli_fetch_array($result);
+echo '<h2>'.$row['title'].'<h2>'; // ì—°ê´€ë°°ì—´
+echo $row['description'];
+
+$row = mysqli_fetch_array($result);
+echo '<h2>'.$row['title'].'<h2>'; // ì—°ê´€ë°°ì—´
+echo $row['description'];
+
+$row = mysqli_fetch_array($result);
+echo '<h2>'.$row['title'].'<h2>'; // ì—°ê´€ë°°ì—´
+echo $row['description'];
+
+$row = mysqli_fetch_array($result);
+echo '<h2>'.$row['title'].'<h2>'; // ì—°ê´€ë°°ì—´
+echo $row['description'];
+
+$row = mysqli_fetch_array($result);
+var_dump($row);
+// ê°€ì ¸ì˜¬ í–‰ì´ ì—†ìœ¼ë©´ null ê°’ì„ ë°˜í™˜
+// mysqli_fetch_array ìˆœì„œëŒ€ë¡œ table ë‚´ ë°ì´í„° ê°€ì ¸ì˜´
