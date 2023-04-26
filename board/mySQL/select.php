@@ -38,11 +38,11 @@ $row = mysqli_fetch_array($result);
 echo '<h2>'.$row['title'].'<h2>'; // 연관배열
 echo $row['description'];
 
-$row = mysqli_fetch_array($result);
-echo '<h2>'.$row['title'].'<h2>'; // 연관배열
-echo $row['description'];
 
-$row = mysqli_fetch_array($result);
-var_dump($row);
+// 데이터가 있는 만큼만 노출하게
+while($row = mysqli_fetch_array($result)) {
+    echo '<h2>'.$row['title'].'<h2>'; // 연관배열
+    echo $row['description'];
+}
 // 가져올 행이 없으면 null 값을 반환
 // mysqli_fetch_array 순서대로 table 내 데이터 가져옴
