@@ -1,7 +1,8 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "root", "livDB");
 
-$sql = '';
+$sql = "SELECT * FROM topic";
+$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
