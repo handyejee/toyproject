@@ -1,3 +1,9 @@
+<?php
+$conn = mysqli_connect("localhost", "root", "root", "livDB");
+
+$sql = '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
