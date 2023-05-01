@@ -16,7 +16,9 @@ $article = array(
     'title'=>'Welcome',
     'description'=>'Hello WEB!'
 );
+
 if (isset($_GET['id'])) {
+    $filtered_id = mysqli_real_escape_string($conn, $_GET['id']); //sql injection을 막아준다.
     $sql = "SELECT * FROM topic WHERE id={$_GET['id']}";
     $result = mysqli_query($conn, $sql); // db에 쿼리 보내는
     $row = mysqli_fetch_array($result); // 앞에 title 값을 가져왔던거와는 달리 id값을 primary key로 설정했기 때문에 반복할 필요 없다.
@@ -40,7 +42,7 @@ print_r($article);
 </head>
 
 <body>
-    <h1>WEB</h1>
+    <h1><a href="index.php"></a></h1>
     <ol>
         <?= $list ?>
     </ol>

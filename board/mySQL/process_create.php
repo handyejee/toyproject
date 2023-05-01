@@ -3,6 +3,11 @@ $conn = mysqli_connect('localhost', 'root', 'root', 'livDB');
 
 // var_dump($_POST); // post 로 데이터가 잘 넘어왔는지 확인
 
+$filterArr = array(
+    'title'=>mysqli_real_escape_string($conn, $_POST['title']),
+    'description'=>mysqli_real_escape_string($conn, $_POST['description'])
+);
+
 $sql = "
     INSERT INTO topic
     (title, description, created)
