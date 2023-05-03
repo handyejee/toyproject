@@ -17,7 +17,7 @@ $sql = "
         NOW()
     )
 ";
-die($sql);
+// die($sql); // 실행중인 스크립트 종료하고 입력받은 인자를 출력하는 함수
 $result = mysqli_multi_query($conn, $sql);
 // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수
 if ($result === false) {
