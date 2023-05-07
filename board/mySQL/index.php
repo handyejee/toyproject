@@ -51,8 +51,8 @@ if (isset($_GET['id'])) {
         <?= $list ?>
     </ol>
     <a href="create.php">create</a>
-    <a href="update.php?id=''" <?=$update_link?> <h2><?= $article['title'] ?></h2>
-        <?= $article['description'] ?>
+    <?=$update_link?> <h2><?= $article['title'] ?></h2>
+    <?= $article['description'] ?>
 </body>
 
 </html>
