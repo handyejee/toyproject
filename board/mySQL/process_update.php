@@ -17,10 +17,10 @@ $filterArr = array(
 $sql = "
     UPDATE topic
     SET
-        title = '{$filtered['title']}'
-        description = '{$filtered['description']}'
+        title = '{$filterArr['title']}'
+        description = '{$filterArr['description']}'
     WHERE
-        id = {$filtered['id']}
+        id = {$filterArr['id']}
 ";
 // die($sql); // 실행중인 스크립트 종료하고 입력받은 인자를 출력하는 함수
 
