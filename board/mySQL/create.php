@@ -43,3 +43,7 @@ $article = array(
 </body>
 
 </html>
+
+<?
+echo $_POST['description'];
+?>

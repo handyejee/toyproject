@@ -17,7 +17,7 @@ $filterArr = array(
 $sql = "
     UPDATE topic
     SET
-        title = '{$filterArr['title']}'
+        title = '{$filterArr['title']}',
         description = '{$filterArr['description']}'
     WHERE
         id = {$filterArr['id']}
