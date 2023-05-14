@@ -15,7 +15,7 @@
     'userID'=>mysqli_real_escape_string($conn, $_POST['userID']),
     'password'=>mysqli_real_escape_string($conn, $_POST['password']),
     'email'=>mysqli_real_escape_string($conn, $_POST['userEmail']),
-    'nickname'=>mysqli_real_escape_string($conn, $_POST['userNickname']),
+    'nickname'=>mysqli_real_escape_string($conn, $_POST['userNickname'])
     );
 
     echo "<pre>";
