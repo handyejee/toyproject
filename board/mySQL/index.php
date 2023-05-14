@@ -8,7 +8,8 @@ while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     $escaped_title = htmlspecialchars($row['title']);
-    $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a></li>";
+    $createDate = $row['created'];
+    $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
     //실제 화면 링크 : index.php?id=4
 }
 
@@ -28,6 +29,7 @@ if (isset($_GET['id'])) {
     $article['description'] = htmlspecialchars($row['description']);
 
     $update_link = '<a href="update.php?id='.$_GET['id'].'">update</a>';
+    
 }
     
 
