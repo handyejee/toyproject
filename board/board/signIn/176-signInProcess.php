@@ -16,10 +16,14 @@ $conn = mysqli_connect("localhost", "root", "root", "livDB");
 
     $sql = "
         SELECT userID, password FROM member
-        WHERE email = '{$_POST['userID']}' AND password = '{$_POST['password']}';
+        WHERE userID = \"{$_POST['userID']}\"
+        AND password = \"{$_POST['password']}\";
     ";
 
+    echo $sql;
+    
     $result = mysqli_multi_query($conn, $sql);
+
     // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수
     if ($result === false) {
         echo "저장하는 과정에서 문제가 생겼습니다. 관리자에게 문의하세요.";
@@ -33,4 +37,4 @@ $conn = mysqli_connect("localhost", "root", "root", "livDB");
             / 절대경로  
             ../ 상위경로 접근
             ./ 현재경로
-        */
+        */ 
