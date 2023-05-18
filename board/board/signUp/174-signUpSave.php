@@ -43,5 +43,5 @@
         error_log(mysqli_error($conn));
         
     } else {
-        echo "성공했습니다. <a href='170-index.php'>로그인 하러 가기</a>";
+        echo "성공했습니다. <a href='../170-index.php'>로그인 하러 가기</a>";
     }
