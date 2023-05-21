@@ -13,10 +13,10 @@
     <form name="signIn" method="POST" action="./176-signInProcess.php">
         <table>
             <tr>
-                <td><input type="input" id="userID" placeholder="아이디" name="userID" required></td>
+                <td><input type="input" id="userID" placeholder="아이디" name="userID"></td>
             </tr>
             <tr>
-                <td><input type="password" id="password" placeholder="비밀번호" name="password" required></td>
+                <td><input type="password" id="password" placeholder="비밀번호" name="password"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="로그인"></td>
