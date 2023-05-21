@@ -1,6 +1,7 @@
 <?php
-// 유효성 검사 추가 필요
-$conn = mysqli_connect("localhost", "root", "root", "livDB");
+ // @todo 유효성 검사 추가 필요
+    $conn = include $_SERVER['DOCUMENT_ROOT'].'/board/connection.php';
+    include $_SERVER['DOCUMENT_ROOT'].'toyproject/BOARD/board/common/171-session.php';
 
     if(mysqli_connect_errno()) {
         echo "데이터베이스 접속 실패";
@@ -9,19 +10,22 @@ $conn = mysqli_connect("localhost", "root", "root", "livDB");
         echo "데이터베이스 접속 성공<br>";
     }
 
+    $userID = $_POST['userID'];
+    $password = $_POST['password'];
+
     $filterArr = array(
-    'userID'=>mysqli_real_escape_string($conn, $_POST['userID']),
-    'password'=>mysqli_real_escape_string($conn, $_POST['password']),
+    'userID'=>mysqli_real_escape_string($conn, $userID),
+    'password'=>mysqli_real_escape_string($conn, $password),
     );
 
     $sql = "
         SELECT userID, password FROM member
-        WHERE userID = \"{$_POST['userID']}\"
-        AND password = \"{$_POST['password']}\";
+        WHERE userID = '$userID'
+        AND password = '$password';
     ";
-
-    echo $sql;
     
+    echo $sql;
+
     $result = mysqli_multi_query($conn, $sql);
 
     // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수
