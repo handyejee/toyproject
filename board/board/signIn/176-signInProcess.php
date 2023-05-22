@@ -27,11 +27,6 @@
 
     $pw = hash('sha256', $password); // 회원가입할때 암호화 한 비밀번호와 같은 값이 되도록 암호화
     // echo $pw;
-
-    // if ($userID == null || $password == null ) {
-    //    echo '비밀번호를 입력해주세요';
-    //    exit();
-    // }
     
     // TODO: $password 값 hash 값으로 넘겨줘야 됨 (회원가입 같이 바꾸기)
     $sql = "
@@ -48,7 +43,7 @@
     $num_match = mysqli_num_rows($result);
     printf('%d', $num_match);
     
-    if ($userID || $password == null) {
+    if ($userID == null || $password == null) {
         echo "
             <script>
             window.alert('아이디와 비밀번호를 입력해주세요.')
@@ -93,12 +88,18 @@
             session_start();
             $_SESSION['userID'] = $row['userID'];
             $_SESSION['nickname'] = $row['nickname'];
+
+            echo $_SESSION['userID'];
+            echo $_SESSION['nickname'];
+            exit;
             
+            // TODO: 로그인 성공시 게시판으로 이동 필요
             echo "
             <script>
-            location.href = '../index.php';
+            window.alert('로그인에 성공하였습니다!')
+            location.href = '../170-index.php'; 
             </script>
-            ";
+            "; 
         }
     }
 
