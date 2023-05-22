@@ -35,13 +35,12 @@
     
     // TODO: $password 값 hash 값으로 넘겨줘야 됨 (회원가입 같이 바꾸기)
     $sql = "
-        SELECT password FROM member
+        SELECT password, nickname FROM member
         WHERE userID = '$userID';
     ";
     
     echo $sql."<br>";
 
-    // ============== 안 나오는 부분 ==============
     $result = mysqli_query($conn, $sql);
     echo "<pre>";
     print_r($result);
@@ -57,7 +56,7 @@
             </script>
 
         ";
-        exit;
+        // exit;
     }
 
     // 아이디와 비밀번호가 db에 저장된 값과 일치하지 않을 경우
@@ -81,6 +80,7 @@
         // if(!password_verify($password, $db_pass)) {
         
         if ($password != $db_pass) {
+            
             echo "
             <script>
             window.alert('비밀번호가 틀립니다!')
@@ -88,19 +88,28 @@
             </script>
             ";
             exit;
+            
         } else {
-            echo "비밀번호 맞음";
+            session_start();
+            $_SESSION['userID'] = $row['userID'];
+            $_SESSION['nickname'] = $row['nickname'];
+            
+            echo "
+            <script>
+            location.href = '../index.php';
+            </script>
+            ";
         }
     }
 
-    // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수
-    if ($result === false) {
-        echo "저장하는 과정에서 문제가 생겼습니다. 관리자에게 문의하세요.";
-        echo "<br>".mysqli_error($conn);
+    // // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수
+    // if ($result === false) {
+    //     echo "저장하는 과정에서 문제가 생겼습니다. 관리자에게 문의하세요.";
+    //     echo "<br>".mysqli_error($conn);
         
-    } else {
-        echo "성공했습니다. <a href='../170-index.php'>게시판으로 이동하기</a>";
-    }
+    // } else {
+    //     echo "성공했습니다. <a href='../170-index.php'>게시판으로 이동하기</a>";
+    // }
 
 
 
