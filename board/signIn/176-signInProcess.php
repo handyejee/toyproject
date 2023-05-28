@@ -91,13 +91,13 @@
 
             echo $_SESSION['userID'];
             echo $_SESSION['nickname'];
-            exit;
+
             
             // TODO: 로그인 성공시 게시판으로 이동 필요
             echo "
             <script>
             window.alert('로그인에 성공하였습니다!')
-            location.href = '../170-index.php'; 
+            location.href = '../../mySQL/index.php'; 
             </script>
             "; 
         }
