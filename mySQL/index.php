@@ -9,7 +9,11 @@ while ($row = mysqli_fetch_array($result)) {
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     $escaped_title = htmlspecialchars($row['title']);
     $createDate = $row['created'];
-    $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
+    // $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
+    $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
+
+    // $title = {$escaped_title}</a>{$createDate};
+    // $createDate = ;
     //실제 화면 링크 : index.php?id=4
 }
 
@@ -31,10 +35,7 @@ if (isset($_GET['id'])) {
     $update_link = '<a href="update.php?id='.$_GET['id'].'">update</a>';
     
 }
-    
-
 // print_r($article);
-
 ?>
 
 <!DOCTYPE html>
@@ -45,15 +46,39 @@ if (isset($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB</title>
+    <style>
+    table {
+        border: 1px solid #444444;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #444444;
+    }
+    </style>
 </head>
 
 <body>
-    <h1><a href="index.php"></a></h1>
-    <ol>
-        <?= $list ?>
-    </ol>
+    <!-- <h1><a href="index.php"></a></h1> 이 부분 왜 필요 한거지 ?-->
+    <table>
+        <tr>
+            <td>
+                <ol>
+                    <?= $list ?>
+                </ol>
+            </td>
+            <td>
+                <?=$article['title']  ?>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    </table>
+
     <a href="create.php">create</a>
-    <?=$update_link?> <h2><?= $article['title'] ?></h2>
+    <h2><?= $article['title'] ?></h2>
     <?= $article['description'] ?>
 </body>
 
