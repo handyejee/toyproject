@@ -9,8 +9,8 @@ while ($row = mysqli_fetch_array($result)) {
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     $escaped_title = htmlspecialchars($row['title']);
     $createDate = $row['created'];
-    // $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
-    $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
+    $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
+    // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
     // $title = {$escaped_title}</a>{$createDate};
     // $createDate = ;
@@ -23,16 +23,26 @@ $article = array(
 );
 
 $update_link = '';
-if (isset($_GET['id'])) {
-    $filtered_id = mysqli_real_escape_string($conn, $_GET['id']); //sql injection을 막아준다.
-    $sql = "SELECT * FROM topic WHERE id={$_GET['id']}";
+$delete_link = '';
+$getID = $_GET['id'];
+
+if (isset($getID)) {
+    $filtered_id = mysqli_real_escape_string($conn, $getID); //sql injection을 막아준다.
+    $sql = "SELECT * FROM topic WHERE id=$getID";
     $result = mysqli_query($conn, $sql); // db에 쿼리 보내는
     $row = mysqli_fetch_array($result); // 앞에 title 값을 가져왔던거와는 달리 id값을 primary key로 설정했기 때문에 반복할 필요 없다.
     
     $article['title'] = htmlspecialchars($row['title']);
     $article['description'] = htmlspecialchars($row['description']);
 
-    $update_link = '<a href="update.php?id='.$_GET['id'].'">update</a>';
+    $update_link = '<a href="update.php?id='.$getID.'">update</a>';
+    // Delete는 form 으로 처리하는 것이 안전하다
+    $delete_link = '
+    <form action="process_delete.php" method="post">
+        <input type="hidden" name="id" value"'.$getID.'">
+        <input type="submit" value="delete">
+    ';
+
     
 }
 // print_r($article);
@@ -69,7 +79,7 @@ if (isset($_GET['id'])) {
                 </ol>
             </td>
             <td>
-                <?=$article['title']  ?>
+
             </td>
             <td>
 
@@ -78,6 +88,8 @@ if (isset($_GET['id'])) {
     </table>
 
     <a href="create.php">create</a>
+    <?=$update_link?>
+    <?=$delete_link?>
     <h2><?= $article['title'] ?></h2>
     <?= $article['description'] ?>
 </body>
