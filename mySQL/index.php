@@ -9,12 +9,13 @@ while ($row = mysqli_fetch_array($result)) {
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     $escaped_title = htmlspecialchars($row['title']);
     $createDate = $row['created'];
-    $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
+    $list = $list."<li><a href=\"index.php?id={$row['id']}\"></a></li>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
     // $title = {$escaped_title}</a>{$createDate};
     // $createDate = ;
     //실제 화면 링크 : index.php?id=4
+    // TODO : 리스트 반복문 안에 넣어서 보여줘야 됨 
 }
 
 $article = array(
@@ -79,10 +80,10 @@ if (isset($getID)) {
                 </ol>
             </td>
             <td>
-
+                <?=$createDate ?>
             </td>
             <td>
-
+                <?=$escaped_title?>
             </td>
         </tr>
     </table>
