@@ -4,19 +4,27 @@ $conn = mysqli_connect("localhost", "root", "root", "livDB");
 $sql = "SELECT * FROM topic";
 $result = mysqli_query($conn, $sql); //database 서버에 전송하는 api
 $list = ''; 
+//mysqli_fetch_array : result set 에서 가지고 온 데이터를 하나씩 리턴
 while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     $escaped_title = htmlspecialchars($row['title']);
-    $createDate = $row['created'];
+    $createDate = $createDate.$row['created'];
     $list = $list."<li><a href=\"index.php?id={$row['id']}\"></a></li>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
+
+    echo "<pre>";
+    print_r($row);
+    echo "</pre><br> \$result";
+    print_r($result);
+
 
     // $title = {$escaped_title}</a>{$createDate};
     // $createDate = ;
     //실제 화면 링크 : index.php?id=4
     // TODO : 리스트 반복문 안에 넣어서 보여줘야 됨 
 }
+
 
 $article = array(
     'title'=>'Welcome',
@@ -36,7 +44,9 @@ if (isset($getID)) {
     $article['title'] = htmlspecialchars($row['title']);
     $article['description'] = htmlspecialchars($row['description']);
 
+
     $update_link = '<a href="update.php?id='.$getID.'">update</a>';
+
     // Delete는 form 으로 처리하는 것이 안전하다
     $delete_link = '
     <form action="process_delete.php" method="post">
@@ -80,10 +90,10 @@ if (isset($getID)) {
                 </ol>
             </td>
             <td>
-                <?=$createDate ?>
+                <?=$escaped_title?>
             </td>
             <td>
-                <?=$escaped_title?>
+                <?=$createDate ?>
             </td>
         </tr>
     </table>
