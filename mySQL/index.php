@@ -8,9 +8,11 @@ $list = '';
 while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
-    $escaped_title = htmlspecialchars($row['title']);
-    $createDate = $createDate.$row['created'];
-    $list = $list."<li><a href=\"index.php?id={$row['id']}\"></a></li>";
+    $escaped_title = $escaped_title.htmlspecialchars($row['title'])."<br>";
+    $escaped_title = "<a href=\"index.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
+
+    $createDate = $createDate."<li>".$row['created']."</li>";
+    $list = $list."<a href=\"index.php?id={$row['id']}\"></a></li>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
     echo "<pre>";
