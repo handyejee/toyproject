@@ -8,17 +8,17 @@ $list = '';
 while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
-    $escaped_title = $escaped_title.htmlspecialchars($row['title'])."<br>";
-    $escaped_title = "<a href=\"index.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
+    // $escaped_title = $escaped_title.htmlspecialchars($row['title'])."<br>";
+    $escaped_title = $escaped_title."<a href=\"content.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
 
     $createDate = $createDate."<li>".$row['created']."</li>";
     $list = $list."<a href=\"index.php?id={$row['id']}\"></a></li>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
-    echo "<pre>";
-    print_r($row);
-    echo "</pre><br> \$result";
-    print_r($result);
+    // echo "<pre>";
+    // print_r($row);
+    // echo "</pre><br> \$result";
+    // print_r($result);
 
 
     // $title = {$escaped_title}</a>{$createDate};
@@ -85,6 +85,11 @@ if (isset($getID)) {
 <body>
     <!-- <h1><a href="index.php"></a></h1> 이 부분 왜 필요 한거지 ?-->
     <table>
+        <tr>
+            <td>번호</td>
+            <td>제목</td>
+            <td>수정일</td>
+        </tr>
         <tr>
             <td>
                 <ol>
