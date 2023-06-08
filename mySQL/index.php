@@ -9,10 +9,9 @@ while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     // $escaped_title = $escaped_title.htmlspecialchars($row['title'])."<br>";
+    $list = $list."<div>".$i++."</div>";
     $escaped_title = $escaped_title."<a href=\"content.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
-
-    $createDate = $createDate."<li>".$row['created']."</li>";
-    $list = $list."<p>".$i++."</p>";
+    $createDate = $createDate.$row['created']."<br>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
     // echo "<pre>";
@@ -70,10 +69,10 @@ if (isset($getID)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB</title>
     <style>
-    * {
+    /* * {
         margin: 0;
         padding: 0;
-    }
+    } */
 
     table {
         border: 1px solid #444444;
@@ -97,9 +96,7 @@ if (isset($getID)) {
         </tr>
         <tr>
             <td>
-
                 <?= $list ?>
-
             </td>
             <td>
                 <?=$escaped_title?>
