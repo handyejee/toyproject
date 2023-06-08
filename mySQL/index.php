@@ -3,8 +3,8 @@ $conn = mysqli_connect("localhost", "root", "root", "livDB");
 
 $sql = "SELECT * FROM topic";
 $result = mysqli_query($conn, $sql); //database 서버에 전송하는 api
-$list = ''; 
 //mysqli_fetch_array : result set 에서 가지고 온 데이터를 하나씩 리턴
+$i = 1;
 while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
@@ -12,7 +12,7 @@ while ($row = mysqli_fetch_array($result)) {
     $escaped_title = $escaped_title."<a href=\"content.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
 
     $createDate = $createDate."<li>".$row['created']."</li>";
-    $list = $list."<a href=\"index.php?id={$row['id']}\"></a></li>";
+    $list = $list."<p>".$i++."</p>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
     // echo "<pre>";
@@ -70,6 +70,11 @@ if (isset($getID)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB</title>
     <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     table {
         border: 1px solid #444444;
         border-collapse: collapse;
@@ -92,9 +97,9 @@ if (isset($getID)) {
         </tr>
         <tr>
             <td>
-                <ol>
-                    <?= $list ?>
-                </ol>
+
+                <?= $list ?>
+
             </td>
             <td>
                 <?=$escaped_title?>
