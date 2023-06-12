@@ -50,7 +50,7 @@ if (isset($getID)) {
     // Delete는 form 으로 처리하는 것이 안전하다
     $delete_link = '
     <form action="process_delete.php" method="post">
-        <input type="hidden" name="id" value"'.$_GET['id'].'">
+        <input type="hidden" name="id" value"'.$_POST['id'].'">
         <input type="submit" value="delete">
     ';
 
