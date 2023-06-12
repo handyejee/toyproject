@@ -7,15 +7,13 @@ $id = $_POST['id'];
 $title = $_POST['title'];
 $description = $_POST['description'];
 
-settype($_POST['id'], 'integer');
+settype($id, 'integer');
 $filterArr = array(
     /* 
     process_create.php 에서 생성할때는 Id 값이없어서 id값에 대한 고려가 필요 없는데
     update 할때는 Url에 ?id= 로 있기 때문에 id 값에 대한 처리도 필요하다!
     */
     'id'=>mysqli_real_escape_string($conn, $id),
-    'title'=>mysqli_real_escape_string($conn, $title),
-    'description'=>mysqli_real_escape_string($conn, $description)
 ); 
 
 $sql = "
@@ -23,7 +21,7 @@ $sql = "
     FROM topic
     WHERE id = {$filterArr['id']}
 ";
-// die($sql); // 실행중인 스크립트 종료하고 입력받은 인자를 출력하는 함수
+die($sql); // 실행중인 스크립트 종료하고 입력받은 인자를 출력하는 함수
 
 $result = mysqli_multi_query($conn, $sql);
 // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수

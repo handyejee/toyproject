@@ -10,7 +10,7 @@ while ($row = mysqli_fetch_array($result)) {
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     // $escaped_title = $escaped_title.htmlspecialchars($row['title'])."<br>";
     $list = $list."<div>".$i++."</div>";
-    $escaped_title = $escaped_title."<a href=\"update.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
+    $escaped_title = $escaped_title."<a href=\"index.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
     $createDate = $createDate.$row['created']."<br>";
     // $list = $list."<li><a href=\"index.php?id={$row['id']}\"></li>";
 
@@ -45,13 +45,12 @@ if (isset($getID)) {
     $article['title'] = htmlspecialchars($row['title']);
     $article['description'] = htmlspecialchars($row['description']);
 
-
     $update_link = '<a href="update.php?id='.$getID.'">update</a>';
 
     // Delete는 form 으로 처리하는 것이 안전하다
     $delete_link = '
     <form action="process_delete.php" method="post">
-        <input type="hidden" name="id" value"'.$getID.'">
+        <input type="hidden" name="id" value"'.$_GET['id'].'">
         <input type="submit" value="delete">
     ';
 
