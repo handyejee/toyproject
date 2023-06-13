@@ -7,11 +7,14 @@ $list = '';
 while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
-    $escaped_title = htmlspecialchars($row['title']);
-    $createDate = $row['created'];
-    $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
+    $list = $list."<div>".$i++."</div>";
+    $escaped_title = $escaped_title."<a href=\"update.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
+    $createDate = $createDate.$row['created']."<br>";
 
     //실제 화면 링크 : index.php?id=4
+//     $escaped_title = htmlspecialchars($row['title']);
+//     $createDate = $row['created'];
+//     $list = $list."<li><a href=\"index.php?id={$row['id']}\">{$escaped_title}</a>{$createDate}</li>";
 }
 
 $article = array(
@@ -47,10 +50,24 @@ if (isset($_GET['id'])) {
 </head>
 
 <body>
-    <h1><a href="index.php"></a></h1>
-    <ol>
-        <?=$list?>
-    </ol>
+    <table>
+        <tr>
+            <td>번호</td>
+            <td>제목</td>
+            <td>수정일</td>
+        </tr>
+        <tr>
+            <td>
+                <?= $list ?>
+            </td>
+            <td>
+                <?=$escaped_title?>
+            </td>
+            <td>
+                <?=$createDate ?>
+            </td>
+        </tr>
+    </table>
     <form action="process_update.php" method="POST">
         <input type="hidden" name="id" value="<?=$_GET['id']?>">
         <p>
