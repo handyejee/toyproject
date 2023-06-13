@@ -5,10 +5,15 @@ $sql = "SELECT * FROM topic";
 $result = mysqli_query($conn, $sql); //database 서버에 전송하는 api
 //mysqli_fetch_array : result set 에서 가지고 온 데이터를 하나씩 리턴
 $i = 1;
+$list = '';
+$escaped_title = '';
+$createDate = '';
+
 while ($row = mysqli_fetch_array($result)) {
     //<li><a href="index.php?id=19">MySQL</a></li>
     // mysql 내 아이디가 3인 것 부터 db에서 가져온다
     // $escaped_title = $escaped_title.htmlspecialchars($row['title'])."<br>";
+
     $list = $list."<div>".$i++."</div>";
     $escaped_title = $escaped_title."<a href=\"index.php?id={$row['id']}\">".htmlspecialchars($row['title'])."</a><br>";
     $createDate = $createDate.$row['created']."<br>";
@@ -36,6 +41,7 @@ $update_link = '';
 $delete_link = '';
 $getID = $_GET['id'];
 
+// get 으로 보내고 있는데 post 
 if (isset($getID)) {
     $filtered_id = mysqli_real_escape_string($conn, $getID); //sql injection을 막아준다.
     $sql = "SELECT * FROM topic WHERE id= $getID";
@@ -50,8 +56,9 @@ if (isset($getID)) {
     // Delete는 form 으로 처리하는 것이 안전하다
     $delete_link = '
     <form action="process_delete.php" method="post">
-        <input type="hidden" name="id" value"'.$_POST['id'].'">
+        <input type="hidden" name="id" value="'.$getID.'">
         <input type="submit" value="delete">
+    </form>
     ';
 
     

@@ -4,8 +4,7 @@ $conn = mysqli_connect('localhost', 'root', 'root', 'livDB');
 // var_dump($_POST); // post 로 데이터가 잘 넘어왔는지 확인
 
 $id = $_POST['id'];
-$title = $_POST['title'];
-$description = $_POST['description'];
+//print_r($_POST);
 
 settype($id, 'integer');
 $filterArr = array(
@@ -21,7 +20,7 @@ $sql = "
     FROM topic
     WHERE id = {$filterArr['id']}
 ";
-die($sql); // 실행중인 스크립트 종료하고 입력받은 인자를 출력하는 함수
+// die($sql); // 실행중인 스크립트 종료하고 입력받은 인자를 출력하는 함수
 
 $result = mysqli_multi_query($conn, $sql);
 // mysqli_multi_query : 단 한개의 쿼리만 실행하도록 하는 함수
